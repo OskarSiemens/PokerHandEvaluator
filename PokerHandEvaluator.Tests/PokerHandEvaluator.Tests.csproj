@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../PokerHandEvaluator.csproj" />
+    <ProjectReference Include="../PokerHandEvaluator/PokerHandEvaluator.csproj" />
   </ItemGroup>
 
 </Project>
