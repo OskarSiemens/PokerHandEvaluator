@@ -14,7 +14,8 @@ namespace PokerHandEvaluator.Tests.Evaluators
             var hand = Hand.Parse("AsKs");
             var community = new List<Card>
             {
-                Card.Parse("QsJs"),
+                Card.Parse("Qs"),
+                Card.Parse("Js"),
                 Card.Parse("Ts"),
                 Card.Parse("2c"),
                 Card.Parse("3c")
