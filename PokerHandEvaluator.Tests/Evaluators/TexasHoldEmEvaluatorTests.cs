@@ -1,12 +1,14 @@
 using PokerHandEvaluator.Models;
 using PokerHandEvaluator.Evaluators;
 using Xunit;
+using System.Collections.Generic;
+using System;
 
 namespace PokerHandEvaluator.Tests.Evaluators
 {
     public class TexasHoldEmEvaluatorTests
     {
-        private readonly TexasHoldEmEvaluator _evaluator = new();
+        private readonly TexasHoldEmEvaluator _evaluator = new TexasHoldEmEvaluator();
 
         [Fact]
         public void Evaluate_RoyalFlush_ReturnsCorrectRanking()

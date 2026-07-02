@@ -1,5 +1,7 @@
 using PokerHandEvaluator.Models;
 using PokerHandEvaluator.Evaluators;
+using System.Collections.Generic;
+using System;
 
 namespace PokerHandEvaluator.Simulators
 {

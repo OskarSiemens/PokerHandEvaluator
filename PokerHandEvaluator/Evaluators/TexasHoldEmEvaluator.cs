@@ -1,4 +1,7 @@
 using PokerHandEvaluator.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PokerHandEvaluator.Evaluators
 {
@@ -21,8 +24,10 @@ namespace PokerHandEvaluator.Evaluators
         {
             var combinations = GetCombinations(cards, 5);
             var evaluations = combinations.Select(c => (hand: c, ranking: EvaluateHand(c)));
-            return evaluations.OrderByDescending(e => e.ranking, new HandRankingComparer())
-                .First().hand;
+            var retVal = evaluations.OrderBy(e => e.ranking, new HandRankingComparer());
+                //.First().hand;
+                var a = retVal.First().hand;
+            return a;
         }
 
         private HandRanking EvaluateHand(List<Card> cards)

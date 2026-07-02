@@ -1,5 +1,8 @@
 using PokerHandEvaluator.Models;
 using PokerHandEvaluator.Evaluators;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PokerHandEvaluator.Simulators
 {
@@ -10,7 +13,7 @@ namespace PokerHandEvaluator.Simulators
     {
         private readonly GameType _gameType;
         private readonly IHandEvaluator _evaluator;
-        private readonly Random _random = new();
+        private readonly Random _random = new Random();
 
         public HandSimulator(GameType gameType)
         {
@@ -35,6 +38,8 @@ namespace PokerHandEvaluator.Simulators
         {
             if (numberOfSimulations <= 0)
                 throw new ArgumentException("Number of simulations must be greater than 0");
+            if (playerAHand.Compare(playerBHand) > 0)
+                throw new ArgumentException("At least one card is the same between player A and B");
 
             int playerAWins = 0;
             int playerBWins = 0;
@@ -45,6 +50,7 @@ namespace PokerHandEvaluator.Simulators
 
             for (int i = 0; i < numberOfSimulations; i++)
             {
+                var deckBeforeDealing = new List<Card>(deck);
                 var (finalCommunity, deckCopy) = DealRemainingCards(deck, communityCards);
 
                 var playerARanking = _evaluator.Evaluate(playerAHand, finalCommunity);
@@ -59,7 +65,7 @@ namespace PokerHandEvaluator.Simulators
                 else
                     ties++;
 
-                deck = deckCopy;
+                deck = deckBeforeDealing;
             }
 
             return new SimulationResult

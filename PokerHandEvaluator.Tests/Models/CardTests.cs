@@ -1,4 +1,5 @@
 using PokerHandEvaluator.Models;
+using System;
 using Xunit;
 
 namespace PokerHandEvaluator.Tests.Models

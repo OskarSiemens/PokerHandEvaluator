@@ -1,12 +1,14 @@
 using PokerHandEvaluator.Models;
 using PokerHandEvaluator.Evaluators;
 using Xunit;
+using System.Collections.Generic;
+using System;
 
 namespace PokerHandEvaluator.Tests.Evaluators
 {
     public class PLO4EvaluatorTests
     {
-        private readonly PLO4Evaluator _evaluator = new();
+        private readonly PLO4Evaluator _evaluator = new PLO4Evaluator();
 
         [Fact]
         public void Evaluate_ValidHand_ReturnsRanking()

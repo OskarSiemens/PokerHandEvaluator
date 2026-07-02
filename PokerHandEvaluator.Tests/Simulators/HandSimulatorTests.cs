@@ -1,5 +1,7 @@
 using PokerHandEvaluator.Models;
 using PokerHandEvaluator.Simulators;
+using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace PokerHandEvaluator.Tests.Simulators
@@ -154,7 +156,35 @@ namespace PokerHandEvaluator.Tests.Simulators
         {
             var simulator = new HandSimulator(GameType.TexasHoldEm);
             var playerA = Hand.Parse("AsAd");
+            var playerB = Hand.Parse("AcAh");
+            var communityCards = new List<Card>();
+
+            var result = simulator.Simulate(playerA, playerB, communityCards, 100000);
+
+            // With identical hands, should have mostly ties
+            Assert.True(result.Ties > result.PlayerAWins + result.PlayerBWins);
+        }
+
+        [Fact]
+        public void Simulate_IdenticalHandsWithCommunityCards_ProducesHighTieRate()
+        {
+            var simulator = new HandSimulator(GameType.TexasHoldEm);
+            var playerA = Hand.Parse("AsAd");
             var playerB = Hand.Parse("AsAd");
+            var communityCards = new List<Card>() { Card.Parse("Ts"), Card.Parse("Ks"), Card.Parse("Qs") };
+
+            var result = simulator.Simulate(playerA, playerB, communityCards, 1000);
+
+            // With identical hands, should have mostly ties
+            Assert.True(result.Ties > result.PlayerAWins + result.PlayerBWins);
+        }
+
+        [Fact]
+        public void Simulate_IdenticalHandsAkAk_ProducesHighTieRate()
+        {
+            var simulator = new HandSimulator(GameType.TexasHoldEm);
+            var playerA = Hand.Parse("AsKs");
+            var playerB = Hand.Parse("AdAd");
             var communityCards = new List<Card>();
 
             var result = simulator.Simulate(playerA, playerB, communityCards, 1000);

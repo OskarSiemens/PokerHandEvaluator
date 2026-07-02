@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace PokerHandEvaluator.Models
 {
     /// <summary>
@@ -28,5 +31,20 @@ namespace PokerHandEvaluator.Models
         }
 
         public override string ToString() => string.Concat(Cards);
+
+        public int Compare(Hand handToCompare)
+        {
+            int compareCounter = 0;
+
+            if (handToCompare.Cards.Contains(this.Cards[0]))
+            {
+                compareCounter++;
+            }
+            if (handToCompare.Cards.Contains(this.Cards[1]))
+            {
+                compareCounter++;
+            }
+            return compareCounter;
+        }
     }
 }

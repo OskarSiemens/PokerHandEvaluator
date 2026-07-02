@@ -1,4 +1,7 @@
 using PokerHandEvaluator.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PokerHandEvaluator.Evaluators
 {
@@ -7,7 +10,7 @@ namespace PokerHandEvaluator.Evaluators
     /// </summary>
     public class PLO4Evaluator : IHandEvaluator
     {
-        private readonly TexasHoldEmEvaluator _baseEvaluator = new();
+        private readonly TexasHoldEmEvaluator _baseEvaluator = new TexasHoldEmEvaluator();
 
         public HandRanking Evaluate(Hand playerHand, List<Card> communityCards)
         {
