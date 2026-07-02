@@ -170,7 +170,7 @@ namespace PokerHandEvaluator.Tests.Simulators
         {
             var simulator = new HandSimulator(GameType.TexasHoldEm);
             var playerA = Hand.Parse("AsAd");
-            var playerB = Hand.Parse("AsAd");
+            var playerB = Hand.Parse("AcAh");
             var communityCards = new List<Card>() { Card.Parse("Ts"), Card.Parse("Ks"), Card.Parse("Qs") };
 
             var result = simulator.Simulate(playerA, playerB, communityCards, 1000);
